@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\ServiceSingle;
 use Illuminate\Http\Request;
 
-class ServiceSingleController extends Controller
+class ServiceSingleController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $singles = ServiceSingle::where('service_id', $id)->get();
+        return view('dashboard.servicesingle.crud', [
+            'singles'=>$singles,
+            'service_id'=>$id
+
+        ]); 
     }
 
     /**
@@ -24,7 +29,7 @@ class ServiceSingleController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.servicesingle.create');
     }
 
     /**
@@ -35,7 +40,23 @@ class ServiceSingleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $validatedData = $request->validate([
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'service_id' => 'required|exists:services,id',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
+        ]);
+        if (!empty($validatedData['photo'])) {
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/servicesingle');
+        }
+        if (!empty($validatedData['icon'])) {
+            $validatedData['icon'] = $this->photoSave($validatedData['icon'], 'image/servicesingle/icon');
+        }
+        ServiceSingle::create($validatedData);
+
+        return redirect()->back()->with('success', 'Successfully uploaded.');
     }
 
     /**
@@ -69,7 +90,24 @@ class ServiceSingleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'service_id' => 'required|exists:services,id',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
+        ]);
+        if (!empty($validatedData['photo'])) {
+            $this->fileDelete('\ServiceSingle', $id, 'photo');
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/servicesingle');
+        }
+        if (!empty($validatedData['icon'])) {
+            $this->fileDelete('\ServiceSingle', $id, 'icon');
+            $validatedData['icon'] = $this->photoSave($validatedData['icon'], 'image/servicesingle/icon');
+        }
+        ServiceSingle::find($id)->update($validatedData);
+
+        return redirect()->back()->with('success', 'Successfully updated.');
     }
 
     /**
@@ -80,6 +118,9 @@ class ServiceSingleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->fileDelete('\ServiceSingle', $id, 'photo');
+        $this->fileDelete('\ServiceSingle', $id, 'icon');
+        ServiceSingle::find($id)->delete();
+        return back();
     }
 }

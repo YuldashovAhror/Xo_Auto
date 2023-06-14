@@ -85,7 +85,7 @@ class HomeVideoController extends BaseController
             $video->video = '/image/homevideo/' . $img_name;
         }
         $video->save();
-        return redirect()->route('dashboard.homevideo.index')->with('success', 'Rasm muvaffaqiyatli almashtirildi.');
+        return redirect()->route('dashboard.homevideo.index')->with('success', 'video updated.');
     }
 
     /**

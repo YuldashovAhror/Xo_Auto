@@ -41,15 +41,16 @@ class SliderController extends BaseController
     {
         $validatedData = $request->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
+            'link' => 'nullable',
         ]);
         
-        $request = $request->toArray();
-        
-        if (!empty($request['photo'])){
-            $request['photo'] = $this->photoSave($request['photo'], 'image/slider');
+        if (!empty($validatedData['photo'])){
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/slider');
         }
-        Slider::create($request);
-        return redirect()->route('dashboard.slider.index');
+        Slider::create($validatedData);
+        return redirect()->route('dashboard.slider.index')->with('success', 'Successfully uploaded.');
     }
 
     /**
@@ -85,16 +86,16 @@ class SliderController extends BaseController
     {
         $validatedData = $request->validate([
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
+            'link' => 'nullable',
         ]);
-
-        $request = $request->toArray();
-        
-        if (!empty($request['photo'])){
+        if (!empty($validatedData['photo'])){
             $this->fileDelete('\Slider', $id, 'photo');
-            $request['photo'] = $this->photoSave($request['photo'], 'image/slider');
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/slider');
         }
-        Slider::find($id)->update($request);
-        return redirect()->route('dashboard.slider.index');
+        Slider::find($id)->update($validatedData);
+        return redirect()->route('dashboard.slider.index')->with('success', 'Successfully update.');
     }
 
     /**

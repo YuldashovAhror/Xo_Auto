@@ -10,6 +10,12 @@
             </ul>
         </div>
     @endif
+    @if (session('success') != null)
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    
     <div class="row">
         <div class="col-sm-12">
             <div class="card">

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AboutController;
+use App\Http\Controllers\Dashboard\AboutVideoController;
 use App\Http\Controllers\Dashboard\BlogController;
 use App\Http\Controllers\Dashboard\BrendController;
 use App\Http\Controllers\Dashboard\CommentCompanyController;
@@ -7,6 +9,10 @@ use App\Http\Controllers\Dashboard\HomeSectionController;
 use App\Http\Controllers\Dashboard\HomeVideoController;
 use App\Http\Controllers\Dashboard\LocationController;
 use App\Http\Controllers\Dashboard\MachinetypeController;
+use App\Http\Controllers\Dashboard\ReviewController;
+use App\Http\Controllers\Dashboard\ServiceController;
+use App\Http\Controllers\Dashboard\ServiceSectionController;
+use App\Http\Controllers\Dashboard\ServiceSingleController;
 use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Dashboard\StepBookController;
 use App\Http\Controllers\Dashboard\StepController;
@@ -43,6 +49,15 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::resource('/homesection', HomeSectionController::class);
         Route::resource('/blog', BlogController::class);
         Route::resource('/work', WorkController::class);
+        Route::resource('/service', ServiceController::class);
+        Route::resource('/servicesingle', ServiceSingleController::class)->except('index', 'show', 'edit');
+        Route::get('/service/{id}/servicesingle', [ServiceSingleController::class, 'index'])->name('servicesingle.index');
+        Route::resource('/servicesection', ServiceSectionController::class)->except('index', 'show');
+        Route::get('/service/{id}/servicesection', [ServiceSectionController::class, 'index'])->name('servicesections.index');
+        Route::get('/service/{service}/servicesection/create', [ServiceSectionController::class, 'create'])->name('servicesections.create');
+        Route::resource('/about', AboutController::class);
+        Route::resource('/aboutvideo', AboutVideoController::class);
+        Route::resource('/review', ReviewController::class);
 
     });
 });

@@ -63,9 +63,29 @@
                     </li>
                     <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="file-text"></i></i><span>Services</span></a>
                         <ul class="nav-submenu menu-content">
-                            <li><a href="{{route('dashboard.brend.index')}}">Service</a></li>
-                            {{-- <li><a href="{{route('dashboard.homevideo.index')}}">Service Video</a></li>
-                            <li><a href="{{route('dashboard.homesection.index')}}">Home Section</a></li> --}}
+                            <li><a href="{{route('dashboard.service.index')}}">List</a></li>
+                            <li><a href="{{route('dashboard.service.create')}}">Create</a></li>
+                            {{-- <li><a href="{{route('dashboard.homesection.index')}}">Home Section</a></li> --}}
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="file-text"></i></i><span>Abouts</span></a>
+                        <ul class="nav-submenu menu-content">
+                            <li><a href="{{route('dashboard.about.index')}}">List</a></li>
+                            <li><a href="{{route('dashboard.about.create')}}">Create</a></li>
+                            <li><a href="{{route('dashboard.aboutvideo.index')}}">About Video</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="{{route('dashboard.review.index')}}" class="nav-link menu-title link-nav" >
+                            <i data-feather="file-text"></i>
+                            <span>Review</span>
+                        </a>
+                    </li>
+                    <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="file-text"></i></i><span>Carriers</span></a>
+                        <ul class="nav-submenu menu-content">
+                            <li><a href="{{route('dashboard.about.index')}}">List</a></li>
+                            <li><a href="{{route('dashboard.about.create')}}">Create</a></li>
+                            <li><a href="{{route('dashboard.aboutvideo.index')}}">For Carriers</a></li>
                         </ul>
                     </li>
                     

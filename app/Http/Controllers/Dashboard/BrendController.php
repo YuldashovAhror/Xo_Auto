@@ -43,14 +43,12 @@ class BrendController extends BaseController
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $request = $request->toArray();
-
-        if (!empty($request['photo'])) {
-            $request['photo'] = $this->photoSave($request['photo'], 'image/brend');
+        if (!empty($validatedData['photo'])) {
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/brend');
         }
-        Brend::create($request);
+        Brend::create($validatedData);
 
-        return redirect()->route('dashboard.brend.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.brend.index')->with('success', 'Successfully uploaded.');
     }
 
     /**
@@ -88,15 +86,13 @@ class BrendController extends BaseController
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $request = $request->toArray();
-
-        if (!empty($request['photo'])) {
+        if (!empty($validatedData['photo'])) {
             $this->fileDelete('\Brend', $id, 'photo');
-            $request['photo'] = $this->photoSave($request['photo'], 'image/brend');
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/brend');
         }
-        Brend::find($id)->update($request);
+        Brend::find($id)->update($validatedData);
 
-        return redirect()->route('dashboard.brend.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.brend.index')->with('success', 'Successfully update.');
     }
 
     /**
