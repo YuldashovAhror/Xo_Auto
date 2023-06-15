@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('for_carriers', function (Blueprint $table) {
             $table->id();
+            $table->string('year');
+            $table->string('customer');
+            $table->string('carriers');
             $table->timestamps();
         });
     }

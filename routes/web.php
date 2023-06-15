@@ -4,7 +4,9 @@ use App\Http\Controllers\Dashboard\AboutController;
 use App\Http\Controllers\Dashboard\AboutVideoController;
 use App\Http\Controllers\Dashboard\BlogController;
 use App\Http\Controllers\Dashboard\BrendController;
+use App\Http\Controllers\Dashboard\CarriersController;
 use App\Http\Controllers\Dashboard\CommentCompanyController;
+use App\Http\Controllers\Dashboard\ForCarriersController;
 use App\Http\Controllers\Dashboard\HomeSectionController;
 use App\Http\Controllers\Dashboard\HomeVideoController;
 use App\Http\Controllers\Dashboard\LocationController;
@@ -58,6 +60,8 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::resource('/about', AboutController::class);
         Route::resource('/aboutvideo', AboutVideoController::class);
         Route::resource('/review', ReviewController::class);
+        Route::resource('/carriers', CarriersController::class);
+        Route::resource('/forcarriers', ForCarriersController::class);
 
     });
 });

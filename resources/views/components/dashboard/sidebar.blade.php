@@ -83,9 +83,8 @@
                     </li>
                     <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="file-text"></i></i><span>Carriers</span></a>
                         <ul class="nav-submenu menu-content">
-                            <li><a href="{{route('dashboard.about.index')}}">List</a></li>
-                            <li><a href="{{route('dashboard.about.create')}}">Create</a></li>
-                            <li><a href="{{route('dashboard.aboutvideo.index')}}">For Carriers</a></li>
+                            <li><a href="{{route('dashboard.carriers.index')}}">Carrier</a></li>
+                            <li><a href="{{route('dashboard.forcarriers.index')}}">For Carriers</a></li>
                         </ul>
                     </li>
                     

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Carrier extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'photo',
+        'name',
+        'discription',
+    ];
 }

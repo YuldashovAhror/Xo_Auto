@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
+use App\Models\Carrier;
 use Illuminate\Http\Request;
 
-class BlogController extends BaseController
+class CarriersController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class BlogController extends BaseController
      */
     public function index()
     {
-        $blogs = Blog::orderBy('id', 'desc')->get();
-        return view('dashboard.blog.index', [
-            'blogs'=>$blogs
+        $carriers = Carrier::orderBy('id', 'desc')->get();
+        return view('dashboard.carrier.crud', [
+            'carriers'=>$carriers
         ]);
     }
 
@@ -28,7 +28,7 @@ class BlogController extends BaseController
      */
     public function create()
     {
-        return view('dashboard.blog.create');
+        //
     }
 
     /**
@@ -41,18 +41,16 @@ class BlogController extends BaseController
     {
         $validatedData = $request->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'second_photo' => '|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
         ]);
 
         if (!empty($validatedData['photo'])) {
-            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/blog');
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/carrier');
         }
-        if (!empty($validatedData['second_photo'])) {
-            $validatedData['second_photo'] = $this->photoSave($validatedData['second_photo'], 'image/blog/second_photo');
-        }
-        Blog::create($validatedData);
+        Carrier::create($validatedData);
 
-        return redirect()->route('dashboard.blog.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.carriers.index')->with('success', 'Uploded.');
     }
 
     /**
@@ -74,10 +72,7 @@ class BlogController extends BaseController
      */
     public function edit($id)
     {
-        $blog  = Blog::find($id);
-        return view('dashboard.blog.edit', [
-            'blog'=>$blog
-        ]);
+        //
     }
 
     /**
@@ -90,21 +85,18 @@ class BlogController extends BaseController
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'photo' => '|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'second_photo' => '|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
         ]);
 
         if (!empty($validatedData['photo'])) {
-            $this->fileDelete('\Blog', $id, 'photo');
-            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/blog');
+            $this->fileDelete('\Carrier', $id, 'photo');
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/carrier');
         }
-        if (!empty($validatedData['second_photo'])) {
-            $this->fileDelete('\Blog', $id, 'second_photo');
-            $validatedData['second_photo'] = $this->photoSave($validatedData['second_photo'], 'image/blog/second_photo');
-        }
-        Blog::find($id)->update($validatedData);
+        Carrier::find($id)->update($validatedData);
 
-        return redirect()->route('dashboard.blog.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.carriers.index')->with('success', 'Updated.');
     }
 
     /**
@@ -115,9 +107,8 @@ class BlogController extends BaseController
      */
     public function destroy($id)
     {
-        $this->fileDelete('\Blog', $id, 'photo');
-        $this->fileDelete('\Blog', $id, 'second_photo');
-        Blog::find($id)->delete();
+        $this->fileDelete('\Carrier', $id, 'photo');
+        Carrier::find($id)->delete();
         return back();
     }
 }

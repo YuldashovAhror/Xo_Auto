@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ForCarrier extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'year',
+        'customer',
+        'carriers',
+    ];
 }
