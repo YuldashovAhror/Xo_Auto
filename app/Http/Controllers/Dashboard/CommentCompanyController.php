@@ -41,19 +41,21 @@ class CommentCompanyController extends BaseController
     {
         $validatedData = $request->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'ok' => 'nullable',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
+            'star' => 'nullable',
         ]);
 
-        $request = $request->toArray();
-
-        if (!empty($request['photo'])) {
-            $request['photo'] = $this->photoSave($request['photo'], 'image/commentcompany');
+        if (!empty($validatedData['photo'])) {
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/commentcompany');
         }
-        if (!empty($request['ok'])){
-            $request['ok'] = 1;
+        if (!empty($validatedData['ok'])){
+            $validatedData['ok'] = 1;
         }
-        CommentCompany::create($request);
+        CommentCompany::create($validatedData);
 
-        return redirect()->route('dashboard.commentcompany.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.commentcompany.index')->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -92,23 +94,25 @@ class CommentCompanyController extends BaseController
     {
         $validatedData = $request->validate([
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'ok' => 'nullable',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
+            'star' => 'nullable',
         ]);
 
-        $request = $request->toArray();
-
-        if (!empty($request['photo'])) {
+        if (!empty($validatedData['photo'])) {
             $this->fileDelete('\CommentCompany', $id, 'photo');
-            $request['photo'] = $this->photoSave($request['photo'], 'image/commentcompany');
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/commentcompany');
         }
-        if (!empty($request['ok'])){
-            $request['ok'] = 1;
+        if (!empty($validatedData['ok'])){
+            $validatedData['ok'] = 1;
         }
-        if (empty($request['ok'])){
-            $request['ok'] = 0;
+        if (empty($validatedData['ok'])){
+            $validatedData['ok'] = 0;
         }
-        CommentCompany::find($id)->update($request);
+        CommentCompany::find($id)->update($validatedData);
 
-        return redirect()->route('dashboard.commentcompany.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.commentcompany.index')->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -121,6 +125,6 @@ class CommentCompanyController extends BaseController
     {
         $this->fileDelete('\CommentCompany', $id, 'photo');
         CommentCompany::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

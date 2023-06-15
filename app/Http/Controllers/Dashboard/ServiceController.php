@@ -45,29 +45,36 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        $validatedData = $request->validate([
+            'video' => 'required|mimes:mp4,avi,mov,wmv',
+            'second_video' => 'required|mimes:mp4,avi,mov,wmv',
+            'title' => 'nullable',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
+            'atribute' => 'nullable',
+        ]);
 
         $service = new Service();
-        $service->name = $request->name;
-        $service->discription = $request->discription;
-        $service->title = $request->title;
-        if (!empty($request->file('video'))) {
-            $img_name = Str::random(10) . '.' . $request->file('video')->getClientOriginalExtension();
-            $request->file('video')->move(public_path('/image/service'), $img_name);
+        $service->name = $validatedData['name'];
+        $service->discription = $validatedData['discription'];
+        $service->title = $validatedData['title'];
+        if (!empty($validatedData['video'])) {
+            $img_name = Str::random(10) . '.' . $validatedData['video']->getClientOriginalExtension();
+            $validatedData['video']->move(public_path('/image/service'), $img_name);
             $service->video = '/image/service/' . $img_name;
         }
-        if (!empty($request->file('second_video'))) {
-            $img_name = Str::random(10) . '.' . $request->file('second_video')->getClientOriginalExtension();
-            $request->file('second_video')->move(public_path('/image/service/secondvideo'), $img_name);
+        if (!empty($validatedData['second_video'])) {
+            $img_name = Str::random(10) . '.' . $validatedData['second_video']->getClientOriginalExtension();
+            $validatedData['second_video']->move(public_path('/image/service/secondvideo'), $img_name);
             $service->second_video = '/image/service/secondvideo/' . $img_name;
         }
-        if(!isset($request['rooms'])){
-            $request['rooms'] = [];
+        if(!isset($validatedData['rooms'])){
+            $validatedData['rooms'] = [];
         }
-        $service->atribute = $request->rooms;
+        $service->atribute = $validatedData['rooms'];
 
         $service->save();
-        return redirect()->route('dashboard.service.index');
+        return redirect()->route('dashboard.service.index')->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -104,34 +111,41 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+        $validatedData = $request->validate([
+            'video' => 'mimes:mp4,avi,mov,wmv',
+            'second_video' => 'mimes:mp4,avi,mov,wmv',
+            'title' => 'nullable',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
+            'atribute' => 'nullable',
+        ]);
 
         $service = Service::find($id);
-        $service->name = $request->name;
-        $service->discription = $request->discription;
-        $service->title = $request->title;
-        if (!empty($request->file('video'))) {
+        $service->name = $validatedData['name'];
+        $service->discription = $validatedData['discription'];
+        $service->title = $validatedData['title'];
+        if (!empty($validatedData['video'])) {
             if (is_file(public_path($service->video))) {
                 unlink(public_path($service->video));
             }
-            $img_name = Str::random(10) . '.' . $request->file('video')->getClientOriginalExtension();
-            $request->file('video')->move(public_path('/image/service'), $img_name);
+            $img_name = Str::random(10) . '.' . $validatedData['video']->getClientOriginalExtension();
+            $validatedData['video']->move(public_path('/image/service'), $img_name);
             $service->video = '/image/service/' . $img_name;
         }
-        if (!empty($request->file('second_video'))) {
+        if (!empty($validatedData['second_video'])) {
             if (is_file(public_path($service->second_video))) {
                 unlink(public_path($service->second_video));
             }
-            $img_name = Str::random(10) . '.' . $request->file('second_video')->getClientOriginalExtension();
-            $request->file('second_video')->move(public_path('/image/service/secondvideo'), $img_name);
+            $img_name = Str::random(10) . '.' . $validatedData['second_video']->getClientOriginalExtension();
+            $validatedData['second_video']->move(public_path('/image/service/secondvideo'), $img_name);
             $service->second_video = '/image/service/secondvideo/' . $img_name;
         }
-        if(!isset($request['rooms'])){
-            $request['rooms'] = [];
+        if(!isset($validatedData['rooms'])){
+            $validatedData['rooms'] = [];
         }
-        $service->atribute = $request->rooms;
+        $service->atribute = $validatedData['rooms'];
         $service->save();
-        return redirect()->route('dashboard.service.index');
+        return redirect()->route('dashboard.service.index')->with('success', 'Data updated successfully.');
 
     }
 
@@ -158,6 +172,6 @@ class ServiceController extends Controller
             $this->servicesectionController->destroy($prod->id);
         }
         $service->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

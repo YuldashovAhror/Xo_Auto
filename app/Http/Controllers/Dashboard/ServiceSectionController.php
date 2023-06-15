@@ -59,7 +59,7 @@ class ServiceSectionController extends BaseController
 
         ServiceSection::create($validatedData);
 
-        return redirect()->route('dashboard.servicesections.index', $validatedData['service_id'])->with('success', 'Successfully uploaded.');
+        return redirect()->route('dashboard.servicesections.index', $validatedData['service_id'])->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -113,7 +113,7 @@ class ServiceSectionController extends BaseController
 
         ServiceSection::find($id)->update($validatedData);
 
-        return redirect()->route('dashboard.servicesections.index', $validatedData['service_id'])->with('success', 'Successfully updated.');
+        return redirect()->route('dashboard.servicesections.index', $validatedData['service_id'])->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -126,6 +126,6 @@ class ServiceSectionController extends BaseController
     {
         $this->fileDelete('\ServiceSection', $id, 'photo');
         ServiceSection::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

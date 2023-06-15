@@ -50,7 +50,7 @@ class SliderController extends BaseController
             $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/slider');
         }
         Slider::create($validatedData);
-        return redirect()->route('dashboard.slider.index')->with('success', 'Successfully uploaded.');
+        return redirect()->route('dashboard.slider.index')->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -95,7 +95,7 @@ class SliderController extends BaseController
             $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/slider');
         }
         Slider::find($id)->update($validatedData);
-        return redirect()->route('dashboard.slider.index')->with('success', 'Successfully update.');
+        return redirect()->route('dashboard.slider.index')->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -108,6 +108,6 @@ class SliderController extends BaseController
     {
         $this->fileDelete('\Slider', $id, 'photo');
         Slider::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

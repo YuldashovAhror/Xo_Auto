@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class HelpCenter extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'video',
+        'second_video',
+        'atribute',
+    ];
+
+    protected $casts = [
+        'atribute' => 'array'
+    ];
 }

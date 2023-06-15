@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('help_centers', function (Blueprint $table) {
             $table->id();
+            $table->string('video');
+            $table->string('second_video');
+            $table->text('atribute')->nullable();
             $table->timestamps();
         });
     }

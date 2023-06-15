@@ -81,7 +81,7 @@ class HomeSectionController extends Controller
 
         HomeSection::find($id)->update($request);
 
-        return redirect()->route('dashboard.homesection.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.homesection.index')->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -93,6 +93,6 @@ class HomeSectionController extends Controller
     public function destroy($id)
     {
         HomeSection::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

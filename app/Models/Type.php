@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+    ];
+
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class, 'type_id');  
+    }
 }

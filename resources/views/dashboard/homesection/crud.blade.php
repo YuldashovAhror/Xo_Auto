@@ -10,6 +10,11 @@
             </ul>
         </div>
     @endif
+    @if (session('success') != null)
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
@@ -116,9 +121,8 @@
                                         <button class="btn btn-xs btn-danger" type="button" data-bs-toggle="modal"
                                             data-bs-target="#exampleModalCenter{{ $section->id }}"><i
                                                 class="bx bx-trash"></i>Удалить</button>
-                                        <div class="modal fade" id="exampleModalCenter{{ $section->id }}"
-                                            tabindex="-1" aria-labelledby="exampleModalCenter" style="display: none;"
-                                            aria-hidden="true">
+                                        <div class="modal fade" id="exampleModalCenter{{ $section->id }}" tabindex="-1"
+                                            aria-labelledby="exampleModalCenter" style="display: none;" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

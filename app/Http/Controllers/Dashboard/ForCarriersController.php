@@ -80,7 +80,7 @@ class ForCarriersController extends Controller
             'carriers' => 'required|string|max:255',
         ]);
         ForCarrier::find($id)->update($validatedData);
-        return redirect()->route('dashboard.forcarriers.index')->with('success', 'Successfully update.');
+        return redirect()->route('dashboard.forcarriers.index')->with('success', 'Data updated successfully.');
     }
 
     /**

@@ -41,16 +41,16 @@ class StepController extends BaseController
     {
         $validatedData = $request->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
         ]);
 
-        $request = $request->toArray();
-
-        if (!empty($request['photo'])) {
-            $request['photo'] = $this->photoSave($request['photo'], 'image/step');
+        if (!empty($validatedData['photo'])) {
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/step');
         }
-        Step::create($request);
+        Step::create($validatedData);
 
-        return redirect()->route('dashboard.step.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.step.index')->with('success', 'Data uploaded successfully.');
     
     }
 
@@ -87,18 +87,18 @@ class StepController extends BaseController
     {
         $validatedData = $request->validate([
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'string|max:255',
+            'discription' => 'nullable',
         ]);
 
-        $request = $request->toArray();
-
-        if (!empty($request['photo'])) {
+        if (!empty($validatedData['photo'])) {
             $this->fileDelete('\Step', $id, 'photo');
-            $request['photo'] = $this->photoSave($request['photo'], 'image/step');
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/step');
         }
 
-        Step::find($id)->update($request);
+        Step::find($id)->update($validatedData);
 
-        return redirect()->route('dashboard.step.index')->with('success', 'Rasm muvaffaqiyatli almashtirildi.');
+        return redirect()->route('dashboard.step.index')->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -111,6 +111,6 @@ class StepController extends BaseController
     {
         $this->fileDelete('\Step', $id, 'photo');
         Step::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

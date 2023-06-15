@@ -43,7 +43,7 @@ class StepBookController extends Controller
         $request = $request->toArray();
         StepBook::create($request);
 
-        return redirect()->route('dashboard.stepbook.index');
+        return redirect()->route('dashboard.stepbook.index')->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -80,7 +80,7 @@ class StepBookController extends Controller
         $request = $request->toArray();
         StepBook::find($id)->update($request);
 
-        return redirect()->route('dashboard.stepbook.index');
+        return redirect()->route('dashboard.stepbook.index')->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -92,6 +92,6 @@ class StepBookController extends Controller
     public function destroy($id)
     {
         StepBook::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

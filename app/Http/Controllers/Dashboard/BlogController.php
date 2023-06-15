@@ -118,6 +118,6 @@ class BlogController extends BaseController
         $this->fileDelete('\Blog', $id, 'photo');
         $this->fileDelete('\Blog', $id, 'second_photo');
         Blog::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

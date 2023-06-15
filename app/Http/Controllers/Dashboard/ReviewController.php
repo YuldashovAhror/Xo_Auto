@@ -52,7 +52,7 @@ class ReviewController extends Controller
             $video->video = '/image/review/' . $img_name;
         }
         $video->save();
-        return redirect()->route('dashboard.review.index')->with('success', 'video uploded.');
+        return redirect()->route('dashboard.review.index')->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -100,7 +100,7 @@ class ReviewController extends Controller
             $video->video = '/image/review/' . $img_name;
         }
         $video->save();
-        return redirect()->route('dashboard.review.index')->with('success', 'video updated.');
+        return redirect()->route('dashboard.review.index')->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -117,6 +117,6 @@ class ReviewController extends Controller
         }
 
         $video->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

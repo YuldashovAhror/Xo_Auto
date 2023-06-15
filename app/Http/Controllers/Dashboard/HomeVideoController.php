@@ -75,17 +75,21 @@ class HomeVideoController extends BaseController
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'video' => 'mimes:mp4,avi,mov,wmv',
+        ]);
+
         $video = HomeVideo::find($id);
-        if (!empty($request->file('video'))) {
+        if (!empty($validatedData['video'])) {
             if (is_file(public_path($video->video))) {
                 unlink(public_path($video->video));
             }
-            $img_name = Str::random(10) . '.' . $request->file('video')->getClientOriginalExtension();
-            $request->file('video')->move(public_path('/image/homevideo'), $img_name);
+            $img_name = Str::random(10) . '.' . $validatedData['video']->getClientOriginalExtension();
+            $validatedData['video']->move(public_path('/image/homevideo'), $img_name);
             $video->video = '/image/homevideo/' . $img_name;
         }
         $video->save();
-        return redirect()->route('dashboard.homevideo.index')->with('success', 'video updated.');
+        return redirect()->route('dashboard.homevideo.index')->with('success', 'Data updated successfully.');
     }
 
     /**

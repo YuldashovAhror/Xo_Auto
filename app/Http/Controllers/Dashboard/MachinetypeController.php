@@ -41,16 +41,15 @@ class MachinetypeController extends BaseController
     {
         $validatedData = $request->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'nullable',
         ]);
 
-        $request = $request->toArray();
-
-        if (!empty($request['photo'])) {
-            $request['photo'] = $this->photoSave($request['photo'], 'image/machinetype');
+        if (!empty($validatedData['photo'])) {
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/machinetype');
         }
-        Machinetype::create($request);
+        Machinetype::create($validatedData);
 
-        return redirect()->route('dashboard.machinetype.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.machinetype.index')->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -86,18 +85,16 @@ class MachinetypeController extends BaseController
     {
         $validatedData = $request->validate([
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'nullable',
         ]);
-
-        $request = $request->toArray();
-
-        if (!empty($request['photo'])) {
+        if (!empty($validatedData['photo'])) {
             $this->fileDelete('\Machinetype', $id, 'photo');
-            $request['photo'] = $this->photoSave($request['photo'], 'image/machinetype');
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/machinetype');
         }
 
-        Machinetype::find($id)->update($request);
+        Machinetype::find($id)->update($validatedData);
 
-        return redirect()->route('dashboard.machinetype.index')->with('success', 'Rasm muvaffaqiyatli almashtirildi.');
+        return redirect()->route('dashboard.machinetype.index')->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -110,6 +107,6 @@ class MachinetypeController extends BaseController
     {
         $this->fileDelete('\Machinetype', $id, 'photo');
         Machinetype::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

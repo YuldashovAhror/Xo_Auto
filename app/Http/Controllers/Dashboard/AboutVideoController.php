@@ -87,7 +87,7 @@ class AboutVideoController extends Controller
             $video->video = '/image/aboutvideo/' . $img_name;
         }
         $video->save();
-        return redirect()->route('dashboard.aboutvideo.index')->with('success', 'video updated.');
+        return redirect()->route('dashboard.aboutvideo.index')->with('success', 'Data updated successfully.');
     }
 
     /**

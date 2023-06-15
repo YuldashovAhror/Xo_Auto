@@ -47,7 +47,7 @@ class AboutController extends Controller
         ]);
         About::create($validatedData);
 
-        return redirect()->route('dashboard.about.index')->with('success', 'Successfully uploaded.');
+        return redirect()->route('dashboard.about.index')->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -92,7 +92,7 @@ class AboutController extends Controller
         ]);
         About::find($id)->update($validatedData);
 
-        return redirect()->route('dashboard.about.index')->with('success', 'Successfully update.');
+        return redirect()->route('dashboard.about.index')->with('success', 'Data update successfully.');
     }
 
     /**
@@ -104,6 +104,6 @@ class AboutController extends Controller
     public function destroy($id)
     {
         About::find($id)->delete();
-        return back()->with('success', 'deleted.');
+        return back()->with('success', 'deleted.')->with('success', 'Data deleted.');
     }
 }

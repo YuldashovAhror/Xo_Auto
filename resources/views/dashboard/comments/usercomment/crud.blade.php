@@ -10,6 +10,11 @@
             </ul>
         </div>
     @endif
+    @if (session('success') != null)
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
@@ -74,8 +79,8 @@
                             @foreach ($comments as $key => $comment)
                                 <tr>
                                     <th scope="row">{{ ++$key }}</th>
-                                    <td><img src="{{ $comment->photo }}" alt=""
-                                            style="height: 100px; width: 100px"></td>
+                                    <td><img src="{{ $comment->photo }}" alt="" style="height: 100px; width: 100px">
+                                    </td>
                                     <td>{{ $comment->name }}</td>
                                     <td class="text-center">
                                         <button class="btn btn-xs btn-success" type="button" data-bs-toggle="modal"

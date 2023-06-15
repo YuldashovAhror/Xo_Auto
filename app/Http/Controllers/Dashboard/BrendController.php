@@ -92,7 +92,7 @@ class BrendController extends BaseController
         }
         Brend::find($id)->update($validatedData);
 
-        return redirect()->route('dashboard.brend.index')->with('success', 'Successfully update.');
+        return redirect()->route('dashboard.brend.index')->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -105,6 +105,6 @@ class BrendController extends BaseController
     {
         $this->fileDelete('\Brend', $id, 'photo');
         Brend::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

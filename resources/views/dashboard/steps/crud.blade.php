@@ -10,6 +10,11 @@
             </ul>
         </div>
     @endif
+    @if (session('success') != null)
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
@@ -74,8 +79,8 @@
                             @foreach ($steps as $key => $step)
                                 <tr>
                                     <th scope="row">{{ ++$key }}</th>
-                                    <td><img src="{{ $step->photo }}" alt=""
-                                            style="height: 100px; width: 100px"></td>
+                                    <td><img src="{{ $step->photo }}" alt="" style="height: 100px; width: 100px">
+                                    </td>
                                     <td>{{ $step->name }}</td>
                                     <td class="text-center">
                                         <button class="btn btn-xs btn-success" type="button" data-bs-toggle="modal"
@@ -150,8 +155,7 @@
                                                         <h5 class="modal-title">Удалить?</h5>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <form
-                                                            action="{{ route('dashboard.step.destroy', $step->id) }}"
+                                                        <form action="{{ route('dashboard.step.destroy', $step->id) }}"
                                                             method="post">
                                                             @csrf
                                                             {{ method_field('delete') }}

@@ -50,7 +50,7 @@ class CarriersController extends BaseController
         }
         Carrier::create($validatedData);
 
-        return redirect()->route('dashboard.carriers.index')->with('success', 'Uploded.');
+        return redirect()->route('dashboard.carriers.index')->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -96,7 +96,7 @@ class CarriersController extends BaseController
         }
         Carrier::find($id)->update($validatedData);
 
-        return redirect()->route('dashboard.carriers.index')->with('success', 'Updated.');
+        return redirect()->route('dashboard.carriers.index')->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -109,6 +109,6 @@ class CarriersController extends BaseController
     {
         $this->fileDelete('\Carrier', $id, 'photo');
         Carrier::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

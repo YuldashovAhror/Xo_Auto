@@ -41,7 +41,7 @@ class LocationController extends Controller
     {
         $request = $request->toArray();
         Location::create($request);
-        return redirect()->route('dashboard.location.index');
+        return redirect()->route('dashboard.location.index')->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -77,7 +77,7 @@ class LocationController extends Controller
     {
         $request = $request->toArray();
         Location::find($id)->update($request);
-        return redirect()->route('dashboard.location.index');
+        return redirect()->route('dashboard.location.index')->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -89,6 +89,6 @@ class LocationController extends Controller
     public function destroy($id)
     {
         Location::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

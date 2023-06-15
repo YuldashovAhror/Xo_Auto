@@ -10,6 +10,11 @@
             </ul>
         </div>
     @endif
+    @if (session('success') != null)
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
@@ -32,14 +37,14 @@
                                 <div>
                                     <label class="form-label" for="exampleFormControlInput1">Name</label>
                                     <input class="form-control" id="exampleFormControlInput1" required type="text"
-                                        name="name" value="{{$works->name}}">
+                                        name="name" value="{{ $works->name }}">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col mb-12">
                                 <label class="form-label">Discription</label>
-                                <textarea class="ckeditor" name="discription" id="exampleFormControlTextarea4" rows="3">{{$works->discription}}</textarea>
+                                <textarea class="ckeditor" name="discription" id="exampleFormControlTextarea4" rows="3">{{ $works->discription }}</textarea>
                             </div>
                         </div>
                     </div>

@@ -56,7 +56,7 @@ class ServiceSingleController extends BaseController
         }
         ServiceSingle::create($validatedData);
 
-        return redirect()->back()->with('success', 'Successfully uploaded.');
+        return redirect()->back()->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -107,7 +107,7 @@ class ServiceSingleController extends BaseController
         }
         ServiceSingle::find($id)->update($validatedData);
 
-        return redirect()->back()->with('success', 'Successfully updated.');
+        return redirect()->back()->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -121,6 +121,6 @@ class ServiceSingleController extends BaseController
         $this->fileDelete('\ServiceSingle', $id, 'photo');
         $this->fileDelete('\ServiceSingle', $id, 'icon');
         ServiceSingle::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }

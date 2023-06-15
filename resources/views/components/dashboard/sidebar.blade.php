@@ -28,6 +28,7 @@
                         <ul class="nav-submenu menu-content">
                             <li><a href="{{route('dashboard.location.index')}}">Location</a></li>
                             <li><a href="{{route('dashboard.machinetype.index')}}">Machine type</a></li>
+                            <li><a href="{{route('dashboard.feedback.index')}}">Feedbacks</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="file-text"></i></i><span>Steps</span></a>
@@ -55,11 +56,11 @@
                             <li><a href="{{route('dashboard.blog.create')}}">create</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="{{route('dashboard.work.index')}}" class="nav-link menu-title link-nav" >
-                            <i data-feather="file-text"></i>
-                            <span>Works</span>
-                        </a>
+                    <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="file-text"></i></i><span>Works</span></a>
+                        <ul class="nav-submenu menu-content">
+                            <li><a href="{{route('dashboard.work.index')}}">Work video</a></li>
+                            <li><a href="{{route('dashboard.howwork.index')}}">How Work</a></li>
+                        </ul>
                     </li>
                     <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="file-text"></i></i><span>Services</span></a>
                         <ul class="nav-submenu menu-content">
@@ -87,6 +88,21 @@
                             <li><a href="{{route('dashboard.forcarriers.index')}}">For Carriers</a></li>
                         </ul>
                     </li>
+
+                    <li class="dropdown">
+                        <a href="{{route('dashboard.helpcenter.index')}}" class="nav-link menu-title link-nav" >
+                            <i data-feather="file-text"></i>
+                            <span>Help Center</span>
+                        </a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="{{route('dashboard.team.index')}}" class="nav-link menu-title link-nav" >
+                            <i data-feather="file-text"></i>
+                            <span>Team</span>
+                        </a>
+                    </li>
+                    
                     
                 </ul>
             </div>

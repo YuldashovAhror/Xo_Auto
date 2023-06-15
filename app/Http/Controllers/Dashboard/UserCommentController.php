@@ -41,16 +41,16 @@ class UserCommentController extends BaseController
     {
         $validatedData = $request->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
         ]);
 
-        $request = $request->toArray();
-
-        if (!empty($request['photo'])) {
-            $request['photo'] = $this->photoSave($request['photo'], 'image/usercomment');
+        if (!empty($validatedData['photo'])) {
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/usercomment');
         }
-        UserComment::create($request);
+        UserComment::create($validatedData);
 
-        return redirect()->route('dashboard.usercomment.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.usercomment.index')->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -86,17 +86,17 @@ class UserCommentController extends BaseController
     {
         $validatedData = $request->validate([
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'string|max:255',
+            'discription' => 'nullable',
         ]);
 
-        $request = $request->toArray();
-
-        if (!empty($request['photo'])) {
+        if (!empty($validatedData['photo'])) {
             $this->fileDelete('\UserComment', $id, 'photo');
-            $request['photo'] = $this->photoSave($request['photo'], 'image/usercomment');
+            $validatedData['photo'] = $this->photoSave($validatedData['photo'], 'image/usercomment');
         }
-        UserComment::find($id)->update($request);
+        UserComment::find($id)->update($validatedData);
 
-        return redirect()->route('dashboard.usercomment.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.usercomment.index')->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -109,6 +109,6 @@ class UserCommentController extends BaseController
     {
         $this->fileDelete('\UserComment', $id, 'photo');
         UserComment::find($id)->delete();
-        return back();
+        return back()->with('success', 'Data deleted.');
     }
 }
