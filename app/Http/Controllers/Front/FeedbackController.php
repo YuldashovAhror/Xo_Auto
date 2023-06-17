@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
@@ -35,7 +36,16 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $result =  Feedback::create($request->all());
+        if ($result) {
+            return response()->json([
+                'message' => 'Created Successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Error'
+            ], 500);
+        }
     }
 
     /**

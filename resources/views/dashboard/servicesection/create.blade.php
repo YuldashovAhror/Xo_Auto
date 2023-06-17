@@ -48,7 +48,11 @@
                         <hr>
                         <h5>Atribute | <button class="btn btn-xs btn-success" onclick="add()" type="button">+</button></h5>
                         <input type="hidden" id="id" value="0">
+                        <div class="rooms">
+
+                        </div>
                     </div>
+                    
             </div>
             <div class="card-footer text-end">
                 <button class="btn btn-primary" type="submit">Сохранить</button>

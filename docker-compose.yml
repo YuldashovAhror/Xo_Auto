@@ -40,4 +40,4 @@ services:
             - PMA_HOST=db
             - PMA_PORT=3306
         ports:
-            - "8009:80"
+            - "8007:80"

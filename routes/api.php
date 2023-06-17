@@ -1,5 +1,27 @@
 <?php
 
+use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\AboutVideoController;
+use App\Http\Controllers\Front\BlogController;
+use App\Http\Controllers\Front\BrendController;
+use App\Http\Controllers\Front\CarriersController;
+use App\Http\Controllers\Front\LocationController;
+use App\Http\Controllers\Front\MachineTypeController;
+use App\Http\Controllers\Front\SliderController;
+use App\Http\Controllers\Front\StepBookController;
+use App\Http\Controllers\Front\StepController;
+use App\Http\Controllers\Front\CommentCompanyController;
+use App\Http\Controllers\Front\FeedbackController;
+use App\Http\Controllers\Front\ForCarrierController;
+use App\Http\Controllers\Front\HelpCenterController;
+use App\Http\Controllers\Front\HomeSectionController;
+use App\Http\Controllers\Front\HomeVideoController;
+use App\Http\Controllers\Front\HowWorkController;
+use App\Http\Controllers\Front\ReviewController;
+use App\Http\Controllers\Front\TeamController;
+use App\Http\Controllers\Front\TypeController;
+use App\Http\Controllers\Front\UserCommentController;
+use App\Http\Controllers\Front\WorkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +39,27 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/slider', [SliderController::class, 'index']);
+Route::get('/location', [LocationController::class, 'index']);
+Route::get('/machinetype', [MachineTypeController::class, 'index']);
+Route::get('/stepbook', [StepBookController::class, 'index']);
+Route::get('/step', [StepController::class, 'index']);
+Route::get('/commentcompany', [CommentCompanyController::class, 'index']);
+Route::get('/usercomment', [UserCommentController::class, 'index']);
+Route::get('/brend', [BrendController::class, 'index']);
+Route::get('/homevideo', [HomeVideoController::class, 'index']);
+Route::get('/homesection', [HomeSectionController::class, 'index']);
+Route::get('/blog', [BlogController::class, 'index']);
+Route::get('/work', [WorkController::class, 'index']);
+Route::get('/review', [ReviewController::class, 'index']);
+Route::get('/aboutvideo', [AboutVideoController::class, 'index']);
+Route::get('/about', [AboutController::class, 'index']);
+Route::get('/forcarriers', [ForCarrierController::class, 'index']);
+Route::get('/carriers', [CarriersController::class, 'index']);
+Route::get('/helpcenter', [HelpCenterController::class, 'index']);
+
+Route::get('/team', [TeamController::class, 'index']);
+Route::get('/feedback', [FeedbackController::class, 'store']);
+Route::get('/type', [TypeController::class, 'index']);
+Route::get('/howwork', [HowWorkController::class, 'index']);
