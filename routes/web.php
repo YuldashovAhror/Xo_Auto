@@ -24,6 +24,7 @@ use App\Http\Controllers\Dashboard\StepController;
 use App\Http\Controllers\Dashboard\TeamController;
 use App\Http\Controllers\Dashboard\UserCommentController;
 use App\Http\Controllers\Dashboard\WorkController;
+use App\Http\Controllers\Dashboard\YearController;
 use Illuminate\Support\Facades\Route;
 
 //Localization
@@ -70,6 +71,7 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::resource('/team', TeamController::class);
         Route::resource('/feedback', FeedbackController::class);
         Route::resource('/howwork', HowWorkController::class);
+        Route::resource('/year', YearController::class);
 
     });
 });

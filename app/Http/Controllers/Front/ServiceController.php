@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ServiceResource;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+class ServiceController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        return $this->successResponse('success', ServiceResource::collection(Service::orderBy('id', 'desc')->get())) ;
     }
 
     /**

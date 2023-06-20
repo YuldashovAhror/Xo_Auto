@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ServiceSectionResource;
+use App\Models\ServiceSection;
 use Illuminate\Http\Request;
 
-class ServiceSectionController extends Controller
+class ServiceSectionController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -46,7 +48,7 @@ class ServiceSectionController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->successResponse('success', ServiceSectionResource::collection( ServiceSection::where('service_id', $id)->get()));
     }
 
     /**

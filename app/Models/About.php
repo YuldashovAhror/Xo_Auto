@@ -10,9 +10,14 @@ class About extends Model
     use HasFactory;
 
     protected $fillable = [
+        'year_id',
         'name',
         'discription',
         'link',
-        'date',
     ];
+
+    public function year()
+    {
+        return $this->belongsTo(Year::class);
+    }
 }

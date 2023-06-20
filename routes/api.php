@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Dashboard\ServiceController;
+use App\Http\Controllers\Front\SericeSingleController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\AboutVideoController;
 use App\Http\Controllers\Front\BlogController;
@@ -18,6 +20,8 @@ use App\Http\Controllers\Front\HomeSectionController;
 use App\Http\Controllers\Front\HomeVideoController;
 use App\Http\Controllers\Front\HowWorkController;
 use App\Http\Controllers\Front\ReviewController;
+use App\Http\Controllers\Front\ServiceController as FrontServiceController;
+use App\Http\Controllers\Front\ServiceSectionController;
 use App\Http\Controllers\Front\TeamController;
 use App\Http\Controllers\Front\TypeController;
 use App\Http\Controllers\Front\UserCommentController;
@@ -58,8 +62,10 @@ Route::get('/about', [AboutController::class, 'index']);
 Route::get('/forcarriers', [ForCarrierController::class, 'index']);
 Route::get('/carriers', [CarriersController::class, 'index']);
 Route::get('/helpcenter', [HelpCenterController::class, 'index']);
-
 Route::get('/team', [TeamController::class, 'index']);
 Route::get('/feedback', [FeedbackController::class, 'store']);
 Route::get('/type', [TypeController::class, 'index']);
 Route::get('/howwork', [HowWorkController::class, 'index']);
+Route::get('/service', [FrontServiceController::class, 'index']);
+Route::get('/servicesingle/{service_id}', [SericeSingleController::class, 'show']);
+Route::get('/servicesection/{service_id}', [ServiceSectionController::class, 'show']);

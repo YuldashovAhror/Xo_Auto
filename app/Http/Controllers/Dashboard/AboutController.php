@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Year;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -15,7 +16,7 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $abouts  = About::orderBy('id', 'desc')->get();
+        $abouts  = About::with('year')->orderBy('id', 'desc')->get();
         return view('dashboard.about.index',[
             'abouts'=>$abouts
         ]);
@@ -28,7 +29,10 @@ class AboutController extends Controller
      */
     public function create()
     {
-        return view('dashboard.about.create');
+        $years = Year::orderBy('id', 'desc')->get();
+        return view('dashboard.about.create', [
+            'years'=>$years
+        ]);
     }
 
     /**
@@ -39,11 +43,12 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'discription' => 'nullable',
             'link' => 'string|max:255',
-            'date' => 'string|max:255',
+            'year_id' => 'nullable',
         ]);
         About::create($validatedData);
 
@@ -69,9 +74,11 @@ class AboutController extends Controller
      */
     public function edit($id)
     {
+        $years = Year::orderBy('id', 'desc')->get();
         $about = About::find($id);
         return view('dashboard.about.edit', [
-            'about'=>$about
+            'about'=>$about,
+            'years'=>$years,
         ]);
     }
 
@@ -88,7 +95,7 @@ class AboutController extends Controller
             'name' => 'required|string|max:255',
             'discription' => 'nullable',
             'link' => 'string|max:255',
-            'date' => 'string|max:255',
+            'year_id' => 'nullable',
         ]);
         About::find($id)->update($validatedData);
 

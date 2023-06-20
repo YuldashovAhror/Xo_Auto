@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ServiceSingleResource;
+use App\Models\ServiceSingle;
 use Illuminate\Http\Request;
 
-class SericeSingleController extends Controller
+class SericeSingleController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -46,7 +48,7 @@ class SericeSingleController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->successResponse('success', ServiceSingleResource::collection( ServiceSingle::where('service_id', $id)->get()));
     }
 
     /**

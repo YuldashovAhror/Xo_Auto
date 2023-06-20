@@ -16,7 +16,7 @@ class TeamResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'photo'=>$this->photo,
+            'photo'=>env('APP_URL').$this->photo,
             'name'=>$this->name,
             'email'=>$this->email,
             'phone'=>$this->phone,

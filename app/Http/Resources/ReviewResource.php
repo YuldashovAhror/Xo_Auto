@@ -16,7 +16,7 @@ class ReviewResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'video'=>$this->video,
+            'video'=>env('APP_URL').$this->video,
         ];
     }
 }

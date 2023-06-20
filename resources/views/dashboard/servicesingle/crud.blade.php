@@ -92,6 +92,8 @@
                                     <td><img src="{{ $single->photo }}" alt=""
                                             style="height: 100px; width: 100px"></td>
                                     <td>{{ $single->name }}</td>
+                                    <td><img src="{{ $single->icon }}" alt=""
+                                        style="height: 100px; width: 100px"></td>
                                     <td class="text-center">
                                         <button class="btn btn-xs btn-success" type="button" data-bs-toggle="modal"
                                             data-bs-target="#exampleModalCenter{{ $single->id }}Edit"><i

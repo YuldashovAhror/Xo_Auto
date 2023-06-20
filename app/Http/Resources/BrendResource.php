@@ -16,7 +16,7 @@ class BrendResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'photo'=>$this->photo,
+            'photo'=>env('APP_URL').$this->photo,
         ];
     }
 }

@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
+            $table->integer('year_id')->nullable();
             $table->string('name');
             $table->text('discription')->nullable();
             $table->string('link')->nullable();
-            $table->string('date')->nullable();
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class WorkResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'video'=>$this->video,
+            'video'=>env('APP_URL').$this->video,
             'name'=>$this->name,
             'discription'=>$this->discription,
         ];

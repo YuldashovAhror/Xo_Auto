@@ -16,8 +16,8 @@ class HelpCenterResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'video'=>$this->video,
-            'second_video'=>$this->second_video,
+            'video'=>env('APP_URL').$this->video,
+            'second_video'=>env('APP_URL').$this->second_video,
             'atribute'=>$this->atribute,
         ];
     }

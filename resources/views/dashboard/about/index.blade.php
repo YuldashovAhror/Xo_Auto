@@ -40,7 +40,13 @@
                                     <th scope="row">{{ $k }}</th>
                                     <td>{{ $about->name }}</td>
                                     <td>{{ $about->link }}</td>
-                                    <td>{{ $about->date }}</td>
+                                    @if ($about->year != null)
+                                    <td>{{ $about->year->date }}</td>
+                                        
+                                    @endif
+                                    @if ($about->year == null)
+                                        <td><h4>Null</h4></td>
+                                    @endif
                                     <td class="text-center">
                                         <a href="{{ route('dashboard.about.edit', $about) }}">
                                             <button class="btn btn-xs btn-success">Изменить

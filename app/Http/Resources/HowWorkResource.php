@@ -16,7 +16,7 @@ class HowWorkResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'photo'=>$this->photo,
+            'photo'=>env('APP_URL').$this->photo,
             'name'=>$this->name,
             'discription'=>$this->discription,
             'ok'=>$this->ok,

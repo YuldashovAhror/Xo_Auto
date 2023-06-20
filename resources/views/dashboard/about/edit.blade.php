@@ -29,16 +29,21 @@
                                         name="name" value="{{ $about->name }}">
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label class="form-label" for="exampleFormControlInput1">Date</label>
-                                    <input class="form-control" id="exampleFormControlInput1" type="text" name="date" value="{{ $about->date }}">
-                                </div>
-                            </div>
+                            
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="exampleFormControlInput1">Link</label>
                                     <input class="form-control" id="exampleFormControlInput1" type="text" name="link" value="{{ $about->link }}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label" for="exampleFormControlInput1">Date</label>
+                                <div class="mb-3">
+                                    <select  class="calc__type" name="year_id"  id="calc__type" style="font-size: 26px">
+                                        @foreach ($years as $year)
+                                            <option value="{{ $year->id }}">{{ $year->date }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>

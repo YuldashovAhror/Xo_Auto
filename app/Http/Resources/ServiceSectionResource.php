@@ -14,6 +14,13 @@ class ServiceSectionResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'service_id' => $this->service_id,
+            'photo'=> env('APP_URL').$this->photo,
+            'name'=>$this->name,
+            'discription'=>$this->discription,
+            'atribute'=>$this->atribute,
+        ];
     }
 }
