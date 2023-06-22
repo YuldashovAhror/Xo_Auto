@@ -2,7 +2,7 @@
 
 @section('content')
 
-        <div class="col-sm-12">
+        {{-- <div class="col-sm-12">
             <div class="card">
                 <div class="card-header pb-0">
                     <h5>Form</h5>
@@ -116,7 +116,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> --}}
 {{--    Analytics--}}
     
 

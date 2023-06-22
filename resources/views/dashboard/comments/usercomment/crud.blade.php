@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="card-footer text-end">
-                        <button class="btn btn-primary" type="submit">Сохранить</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -85,14 +85,14 @@
                                     <td class="text-center">
                                         <button class="btn btn-xs btn-success" type="button" data-bs-toggle="modal"
                                             data-bs-target="#exampleModalCenter{{ $comment->id }}Edit"><i
-                                                class="bx bx-pencil"></i>Изменить</button>
+                                                class="bx bx-pencil"></i>Change</button>
                                         <div class="modal fade" id="exampleModalCenter{{ $comment->id }}Edit"
                                             tabindex="-1" aria-labelledby="exampleModalCenter" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document"
                                                 style="max-width: 50vw">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Изменить</h5>
+                                                        <h5 class="modal-title">Change</h5>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="{{ route('dashboard.usercomment.update', $comment) }}"
@@ -135,7 +135,7 @@
                                                             </div>
                                                             <div class="card-footer text-end">
                                                                 <button class="btn btn-primary"
-                                                                    type="submit">Изменить</button>
+                                                                    type="submit">Update</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -145,14 +145,14 @@
 
                                         <button class="btn btn-xs btn-danger" type="button" data-bs-toggle="modal"
                                             data-bs-target="#exampleModalCenter{{ $comment->id }}"><i
-                                                class="bx bx-trash"></i>Удалить</button>
+                                                class="bx bx-trash"></i>Delete</button>
                                         <div class="modal fade" id="exampleModalCenter{{ $comment->id }}"
                                             tabindex="-1" aria-labelledby="exampleModalCenter" style="display: none;"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Удалить?</h5>
+                                                        <h5 class="modal-title">Delete?</h5>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <form
@@ -161,11 +161,11 @@
                                                             @csrf
                                                             {{ method_field('delete') }}
                                                             <button class="btn btn-primary" type="submit"
-                                                                data-bs-original-title="" title="">Да</button>
+                                                                data-bs-original-title="" title="">Yes</button>
                                                         </form>
                                                         <button class="btn btn-secondary" type="button"
                                                             data-bs-dismiss="modal" data-bs-original-title=""
-                                                            title="">Нет</button>
+                                                            title="">No</button>
                                                     </div>
                                                 </div>
                                             </div>

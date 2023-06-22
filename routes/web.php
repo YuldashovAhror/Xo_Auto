@@ -22,6 +22,7 @@ use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Dashboard\StepBookController;
 use App\Http\Controllers\Dashboard\StepController;
 use App\Http\Controllers\Dashboard\TeamController;
+use App\Http\Controllers\Dashboard\TypeController;
 use App\Http\Controllers\Dashboard\UserCommentController;
 use App\Http\Controllers\Dashboard\WorkController;
 use App\Http\Controllers\Dashboard\YearController;
@@ -72,6 +73,7 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::resource('/feedback', FeedbackController::class);
         Route::resource('/howwork', HowWorkController::class);
         Route::resource('/year', YearController::class);
+        Route::resource('/type', TypeController::class);
 
     });
 });

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Feedback;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
-class FeedbackController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,10 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::orderBy('id', 'desc')->get();
+        return view('dashboard.type.crud', [
+            'types'=>$types
+        ]);
     }
 
     /**
@@ -37,17 +40,8 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
         $request = $request->toArray();
-        $result = Feedback::create($request);
-        return back()->with('success');
-        if ($result) {
-            return response()->json([
-                'message' => 'Created Successfully'
-            ], 200);
-        } else {
-            return response()->json([
-                'message' => 'Error'
-            ], 500);
-        }
+        Type::create($request);
+        return redirect()->route('dashboard.type.index')->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -81,7 +75,9 @@ class FeedbackController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request = $request->toArray();
+        Type::find($id)->update($request);
+        return redirect()->route('dashboard.type.index')->with('success', 'Data updated successfully.');
     }
 
     /**
@@ -92,6 +88,7 @@ class FeedbackController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Type::find($id)->delete();
+        return back()->with('success', 'Data deleted.');
     }
 }

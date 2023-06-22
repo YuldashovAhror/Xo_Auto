@@ -12,6 +12,11 @@ class TypeController extends BaseController
     public function index()
     {
         return $this->successResponse('success', TypeResource::collection(Type::orderBy('id', 'desc')->get()));
+    }
 
+    public function store(Request $request)
+    {
+    
+        
     }
 }

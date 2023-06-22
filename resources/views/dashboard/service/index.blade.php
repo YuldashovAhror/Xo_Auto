@@ -49,19 +49,19 @@
                                                 class="btn btn-primary">+</button></a></td>
                                     <td class="text-center">
                                         <a href="{{ route('dashboard.service.edit', $service) }}">
-                                            <button class="btn btn-xs btn-success">Изменить
+                                            <button class="btn btn-xs btn-success">Change
                                                 <i class="bx bx-pencil"></i>
                                             </button>
                                         </a>
                                         <button class="btn btn-xs btn-danger" type="button" data-bs-toggle="modal"
                                             data-bs-target="#exampleModalCenter{{ $service->id }}"><i
-                                                class="bx bx-trash"></i>Удалить</button>
+                                                class="bx bx-trash"></i>Delete</button>
                                         <div class="modal fade" id="exampleModalCenter{{ $service->id }}" tabindex="-1"
                                             aria-labelledby="exampleModalCenter" style="display: none;" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Удалить?</h5>
+                                                        <h5 class="modal-title">Delete?</h5>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <form action="{{ route('dashboard.service.destroy', $service) }}"
@@ -69,11 +69,11 @@
                                                             @csrf
                                                             {{ method_field('delete') }}
                                                             <button class="btn btn-primary" type="submit"
-                                                                data-bs-original-title="" title="">Да</button>
+                                                                data-bs-original-title="" title="">Yes</button>
                                                         </form>
                                                         <button class="btn btn-secondary" type="button"
                                                             data-bs-dismiss="modal" data-bs-original-title=""
-                                                            title="">Нет</button>
+                                                            title="">No</button>
                                                     </div>
                                                 </div>
                                             </div>

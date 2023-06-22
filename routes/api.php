@@ -67,6 +67,7 @@ Route::get('/helpcenter', [HelpCenterController::class, 'index']);
 Route::get('/team', [TeamController::class, 'index']);
 Route::get('/feedback', [FeedbackController::class, 'store']);
 Route::get('/type', [TypeController::class, 'index']);
+// Route::get('/type/store', [TypeController::class, 'store']);
 Route::get('/howwork', [HowWorkController::class, 'index']);
 Route::get('/service', [FrontServiceController::class, 'index']);
 Route::get('/servicesingle/{service_id}', [SericeSingleController::class, 'show']);

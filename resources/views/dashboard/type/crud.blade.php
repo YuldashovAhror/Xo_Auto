@@ -15,22 +15,21 @@
             {{ session('success') }}
         </div>
     @endif
-    
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header pb-0">
-                    <h5>Create review</h5>
+                    <h5>Create type</h5>
                 </div>
-                <form action="{{ route('dashboard.review.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('dashboard.type.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <div class="mb-3">
-                                    <label class="form-label" for="exampleFormControlInput1">video </label>
-                                    <input class="form-control" id="exampleFormControlInput1" type="file" required
-                                        name="video">
+                                <div>
+                                    <label class="form-label" for="exampleFormControlInput1">Name</label>
+                                    <input class="form-control" id="exampleFormControlInput1" required type="text"
+                                        name="name">
                                 </div>
                             </div>
                         </div>
@@ -48,7 +47,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-10">
-                            <h5>All reviews</h5>
+                            <h5>All types</h5>
                         </div>
                     </div>
                 </div>
@@ -57,20 +56,21 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">video</th>
+                                <th scope="col">Name</th>
                                 <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($reviews as $key => $review)
+
+                            @foreach ($types as $key => $type)
                                 <tr>
                                     <th scope="row">{{ ++$key }}</th>
-                                    <td><source src="{{$review->video}}" style="height: 100px; width: 100px" type="video/mp4"></td>
+                                    <td>{{ $type->name }}</td>
                                     <td class="text-center">
                                         <button class="btn btn-xs btn-success" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModalCenter{{ $review->id }}Edit"><i
+                                            data-bs-target="#exampleModalCenter{{ $type->id }}Edit"><i
                                                 class="bx bx-pencil"></i>Change</button>
-                                        <div class="modal fade" id="exampleModalCenter{{ $review->id }}Edit"
+                                        <div class="modal fade" id="exampleModalCenter{{ $type->id }}Edit"
                                             tabindex="-1" aria-labelledby="exampleModalCenter" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document"
                                                 style="max-width: 50vw">
@@ -79,23 +79,20 @@
                                                         <h5 class="modal-title">Change</h5>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="{{ route('dashboard.review.update', $review) }}"
+                                                        <form action="{{ route('dashboard.type.update', $type) }}"
                                                             method="post" enctype="multipart/form-data">
                                                             @csrf
                                                             {{ method_field('put') }}
                                                             <div class="card-body">
                                                                 <div class="row">
                                                                     <div class="col-12">
-                                                                        <div class="mb-3">
+                                                                        <div>
                                                                             <label class="form-label"
-                                                                                for="exampleFormControlInput1">Video
-                                                                            </label>
-                                                                            <div class="col-6 text-center">
-                                                                                <source src="{{$review->video}}" type="video/mp4">
-                                                                            </div>
-                                                                            <input class="form-control mt-1"
-                                                                                id="exampleFormControlInput1" type="file"
-                                                                                name="video">
+                                                                                for="exampleFormControlInput1">Name</label>
+                                                                            <input class="form-control"
+                                                                                id="exampleFormControlInput1" required
+                                                                                type="text" name="name"
+                                                                                value="{{ $type->name }}">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -111,11 +108,10 @@
                                         </div>
 
                                         <button class="btn btn-xs btn-danger" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModalCenter{{ $review->id }}"><i
+                                            data-bs-target="#exampleModalCenter{{ $type->id }}"><i
                                                 class="bx bx-trash"></i>Delete</button>
-                                        <div class="modal fade" id="exampleModalCenter{{ $review->id }}"
-                                            tabindex="-1" aria-labelledby="exampleModalCenter" style="display: none;"
-                                            aria-hidden="true">
+                                        <div class="modal fade" id="exampleModalCenter{{ $type->id }}" tabindex="-1"
+                                            aria-labelledby="exampleModalCenter" style="display: none;" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -123,7 +119,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <form
-                                                            action="{{ route('dashboard.review.destroy', $review->id) }}"
+                                                            action="{{ route('dashboard.type.destroy', $type->id) }}"
                                                             method="post">
                                                             @csrf
                                                             {{ method_field('delete') }}
