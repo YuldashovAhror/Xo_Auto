@@ -15,4 +15,6 @@ class AboutController extends BaseController
     {
         return $this->successResponse('success', Year::with('abouts')->orderBy('id', 'desc')->get());
     }
+
+    
 }

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('discription')->nullable();
             $table->string('second_video');
             $table->text('atribute')->nullable();
+            $table->string('video_name')->nullable();
             $table->timestamps();
         });
     }

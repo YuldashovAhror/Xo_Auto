@@ -42,6 +42,10 @@ class BlogController extends BaseController
         $validatedData = $request->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'second_photo' => '|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
+            'date' => 'nullable',
+            'second_discription' => 'nullable',
         ]);
 
         if (!empty($validatedData['photo'])) {
@@ -52,7 +56,7 @@ class BlogController extends BaseController
         }
         Blog::create($validatedData);
 
-        return redirect()->route('dashboard.blog.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.blog.index')->with('success', 'Data uploaded successfully.');
     }
 
     /**
@@ -92,6 +96,10 @@ class BlogController extends BaseController
         $validatedData = $request->validate([
             'photo' => '|image|mimes:jpeg,png,jpg,gif|max:2048',
             'second_photo' => '|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'discription' => 'nullable',
+            'date' => 'nullable',
+            'second_discription' => 'nullable',
         ]);
 
         if (!empty($validatedData['photo'])) {
@@ -104,7 +112,7 @@ class BlogController extends BaseController
         }
         Blog::find($id)->update($validatedData);
 
-        return redirect()->route('dashboard.blog.index')->with('success', 'Rasm muvaffaqiyatli yuklandi.');
+        return redirect()->route('dashboard.blog.index')->with('success', 'Data updated successfully.');
     }
 
     /**

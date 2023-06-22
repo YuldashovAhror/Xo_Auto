@@ -81,6 +81,7 @@ class HomeVideoController extends BaseController
 
         $video = HomeVideo::find($id);
         if (!empty($validatedData['video'])) {
+            $video->video_name = $validatedData['video']->getClientOriginalName();
             if (is_file(public_path($video->video))) {
                 unlink(public_path($video->video));
             }

@@ -13,4 +13,16 @@ class CommentCompanyController extends BaseController
     {
         return $this->successResponse('success', CommentCompanyResource::collection(CommentCompany::orderBy('id', 'desc')->get()));
     }
+
+    public function paginate(Request $request)
+    {
+        if(!$request->perPage){
+            $perPage = 12;
+        }else{
+            $perPage = $request->perPage;
+        }
+        
+        $sliders = CommentCompany::orderBy('id', 'desc')->paginate($perPage);
+        return CommentCompanyResource::collection($sliders);
+    }
 }

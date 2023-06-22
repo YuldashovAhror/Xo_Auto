@@ -11,5 +11,6 @@ class HomeVideo extends Model
 
     protected $fillable = [
         'video',
+        'video_name'
     ];
 }

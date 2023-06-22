@@ -17,12 +17,13 @@
     @endif
     <div class="row">
         <div class="col-sm-12">
-            <h3>
-                <a href="{{ route('dashboard.commentcompany.create') }}">
-                    <button type="submit" style="background-color: green; color: white;">Add</button>
-                </a>
-            </h3>
+            
             <div class="card">
+                <div class="card-footer text-end">
+                    <a href="{{ route('dashboard.commentcompany.create') }}">
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </a>
+                </div>
                 <div class="card-header">
                     <h5>All comment</h5>
                 </div>

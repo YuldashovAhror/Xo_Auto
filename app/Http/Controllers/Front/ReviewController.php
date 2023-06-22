@@ -12,5 +12,7 @@ class ReviewController extends BaseController
     public function index()
     {
         return $this->successResponse('success', ReviewResource::collection(Review::orderBy('id', 'desc')->get()));
+
+    
     }
 }

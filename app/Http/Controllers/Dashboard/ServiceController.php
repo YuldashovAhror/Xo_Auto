@@ -59,6 +59,7 @@ class ServiceController extends Controller
         $service->discription = $validatedData['discription'];
         $service->title = $validatedData['title'];
         if (!empty($validatedData['video'])) {
+            $service->video_name = $validatedData['video']->getClientOriginalName();
             $img_name = Str::random(10) . '.' . $validatedData['video']->getClientOriginalExtension();
             $validatedData['video']->move(public_path('/image/service'), $img_name);
             $service->video = '/image/service/' . $img_name;
@@ -125,6 +126,7 @@ class ServiceController extends Controller
         $service->discription = $validatedData['discription'];
         $service->title = $validatedData['title'];
         if (!empty($validatedData['video'])) {
+            $service->video_name = $validatedData['video']->getClientOriginalName();
             if (is_file(public_path($service->video))) {
                 unlink(public_path($service->video));
             }

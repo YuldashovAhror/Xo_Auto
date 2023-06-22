@@ -9,8 +9,23 @@ use Illuminate\Http\Request;
 
 class BlogController extends BaseController
 {
-    public function index()
+    public function index(Request $request)
     {
-        return $this->successResponse('success', BlogResource::collection(Blog::orderBy('id', 'desc')->get()));
+
+        if(!$request->perPage){
+            $perPage = 12;
+        }else{
+            $perPage = $request->perPage;
+        }
+        
+        $sliders = Blog::orderBy('id', 'desc')->paginate($perPage);
+        return BlogResource::collection($sliders);
+
+        // return $this->successResponse('success', BlogResource::collection(Blog::orderBy('id', 'desc')->get()));
+    }
+
+    public function show($id)
+    {
+        return $this->successResponse('success', BlogResource::make(Blog::find($id)));
     }
 }

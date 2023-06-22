@@ -16,9 +16,9 @@
         </div>
     @endif
     <h3>
-        <a href="{{ route('dashboard.service.index') }}">
-            <button type="submit" style="background-color: green; color: white;">Back</button>
-        </a>
+        <div class="card-footer text-end">
+            <a href="{{ route('dashboard.service.index') }}"><button class="btn btn-primary" type="submit">Add</button></a>
+        </div>
     </h3>
     {{-- @dd($section) --}}
     <div class="row">

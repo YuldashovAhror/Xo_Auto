@@ -75,10 +75,12 @@ class AboutVideoController extends Controller
     {
         $validatedData = $request->validate([
             'video' => 'mimes:mp4,avi,mov,wmv',
+            'name' => 'nullable',
         ]);
 
         $video = AboutVideo::find($id);
         if (!empty($validatedData['video'])) {
+            $video->video_name = $validatedData['video']->getClientOriginalName();
             if (is_file(public_path($video->video))) {
                 unlink(public_path($video->video));
             }

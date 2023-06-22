@@ -74,14 +74,16 @@ class WorkController extends Controller
      */
     public function update(Request $request, $id)
     {
+    
         $validatedData = $request->validate([
             'video' => 'mimes:mp4,avi,mov,wmv',
             'name' => 'required|string|max:255',
             'discription' => 'nullable',
         ]);
-
         $video = Works::find($id);
         if (!empty($validatedData['video'])) {
+            $video->video_name = $validatedData['video']->getClientOriginalName();
+
             if (is_file(public_path($video->video))) {
                 unlink(public_path($video->video));
             }
@@ -92,7 +94,7 @@ class WorkController extends Controller
         $video->name = $validatedData['name'];
         $video->discription = $validatedData['discription'];
         $video->save();
-        return redirect()->route('dashboard.work.index')->with('success', 'Rasm muvaffaqiyatli almashtirildi.');
+        return redirect()->route('dashboard.work.index')->with('success', 'Data updated successfully..');
     }
 
     /**

@@ -13,5 +13,6 @@ class Works extends Model
         'video',
         'name',
         'discription',
+        'video_name',
     ];
 }

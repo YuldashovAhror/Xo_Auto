@@ -51,7 +51,7 @@
                             </div>
                             <div class="col-4">
                                 <div>
-                                    <label class="form-label" for="exampleFormControlInput1">Email</label>
+                                    <label class="form-label" for="exampleFormControlInput1">Phone</label>
                                     <input class="form-control" id="exampleFormControlInput1" type="text" required
                                         name="phone">
                                 </div>

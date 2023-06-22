@@ -26,17 +26,11 @@
                     {{ method_field('put') }}
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <div class="mb-3">
                                     <label class="form-label" for="exampleFormControlInput1">Video </label>
                                     <input class="form-control" id="exampleFormControlInput1" type="file"
                                         name="video">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div>
-                                    <label class="form-label" for="exampleFormControlInput1">Name</label>
-                                    <input class="form-control" id="exampleFormControlInput1" type="text" name="name" value="{{$video->name}}">
                                 </div>
                             </div>
                         </div>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('video');
             $table->string('second_video');
             $table->text('atribute')->nullable();
+            $table->string('video_name')->nullable();
             $table->timestamps();
         });
     }

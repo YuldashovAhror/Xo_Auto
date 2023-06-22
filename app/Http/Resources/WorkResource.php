@@ -19,6 +19,7 @@ class WorkResource extends JsonResource
             'video'=>env('APP_URL').$this->video,
             'name'=>$this->name,
             'discription'=>$this->discription,
+            'video_name'=>$this->video_name,
         ];
     }
 }

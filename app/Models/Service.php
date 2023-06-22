@@ -16,6 +16,7 @@ class Service extends Model
         'video',
         'second_video',
         'atribute',
+        'video_name',
     ];
 
     protected $casts = [

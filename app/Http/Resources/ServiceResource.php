@@ -21,7 +21,7 @@ class ServiceResource extends JsonResource
             'title'=>$this->title,
             'discription'=>$this->discription,
             'atribute'=>$this->atribute,
-            'video'=> env('APP_URL').$this->video,
+            'second_video'=> env('APP_URL').$this->video,
         ];
     }
 }
