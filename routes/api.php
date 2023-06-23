@@ -69,5 +69,6 @@ Route::post('/feedback', [FeedbackController::class, 'store']);
 Route::get('/type', [TypeController::class, 'index']);
 Route::get('/howwork', [HowWorkController::class, 'index']);
 Route::get('/service', [FrontServiceController::class, 'index']);
+Route::get('/service/{service_id}', [FrontServiceController::class, 'show']);
 Route::get('/servicesingle/{service_id}', [SericeSingleController::class, 'show']);
 Route::get('/servicesection/{service_id}', [ServiceSectionController::class, 'show']);

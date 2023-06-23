@@ -16,7 +16,7 @@ class ServiceController extends BaseController
      */
     public function index()
     {
-        return $this->successResponse('success', ServiceResource::collection(Service::orderBy('id', 'desc')->get())) ;
+        return $this->successResponse('success', ServiceResource::collection(Service::orderBy('id', 'desc')->get()));
     }
 
     /**
@@ -48,7 +48,7 @@ class ServiceController extends BaseController
      */
     public function show($id)
     {
-        //
+        return $this->successResponse('success', ServiceResource::make(Service::find($id)));
     }
 
     /**
