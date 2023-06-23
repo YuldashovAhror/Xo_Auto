@@ -17,7 +17,7 @@ class AboutVideoResource extends JsonResource
         return [
             'id' => $this->id,
             'video'=>env('APP_URL').$this->video,
-            'name'=>$this->name,
+            'video_name'=>$this->video_name,
         ];
     }
 }
