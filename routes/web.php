@@ -75,6 +75,15 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::resource('/year', YearController::class);
         Route::resource('/type', TypeController::class);
 
+        Route::get('/optimize', function (){
+            \Illuminate\Support\Facades\Artisan::call('route:clear');
+            \Illuminate\Support\Facades\Artisan::call('cache:clear');
+            \Illuminate\Support\Facades\Artisan::call('config:clear');
+            \Illuminate\Support\Facades\Artisan::call('config:cache');
+            \Illuminate\Support\Facades\Artisan::call('route:cache');
+            \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+            return 'success';
+        });
     });
 });
 

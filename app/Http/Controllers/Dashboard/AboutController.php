@@ -43,7 +43,6 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'discription' => 'nullable',

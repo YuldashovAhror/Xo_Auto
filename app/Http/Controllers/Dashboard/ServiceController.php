@@ -51,7 +51,7 @@ class ServiceController extends Controller
             'title' => 'nullable',
             'name' => 'required|string|max:255',
             'discription' => 'nullable',
-            'atribute' => 'nullable',
+            'rooms' => 'nullable',
         ]);
 
         $service = new Service();
@@ -112,13 +112,14 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $validatedData = $request->validate([
             'video' => 'mimes:mp4,avi,mov,wmv',
             'second_video' => 'mimes:mp4,avi,mov,wmv',
             'title' => 'nullable',
             'name' => 'required|string|max:255',
             'discription' => 'nullable',
-            'atribute' => 'nullable',
+            'rooms' => 'nullable',
         ]);
 
         $service = Service::find($id);

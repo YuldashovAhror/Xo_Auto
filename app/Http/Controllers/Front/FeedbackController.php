@@ -38,7 +38,6 @@ class FeedbackController extends Controller
     {
         $request = $request->toArray();
         $result = Feedback::create($request);
-        return back()->with('success');
         if ($result) {
             return response()->json([
                 'message' => 'Created Successfully'
