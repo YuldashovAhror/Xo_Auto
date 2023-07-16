@@ -19,6 +19,7 @@ use App\Http\Controllers\Front\HelpCenterController;
 use App\Http\Controllers\Front\HomeSectionController;
 use App\Http\Controllers\Front\HomeVideoController;
 use App\Http\Controllers\Front\HowWorkController;
+use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\ReviewController;
 use App\Http\Controllers\Front\ServiceController as FrontServiceController;
 use App\Http\Controllers\Front\ServiceSectionController;
@@ -72,3 +73,5 @@ Route::get('/service', [FrontServiceController::class, 'index']);
 Route::get('/service/{service_id}', [FrontServiceController::class, 'show']);
 Route::get('/servicesingle/{service_id}', [SericeSingleController::class, 'show']);
 Route::get('/servicesection/{service_id}', [ServiceSectionController::class, 'show']);
+Route::post('/order', [OrderController::class, 'store']);
+

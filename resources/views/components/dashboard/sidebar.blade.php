@@ -26,7 +26,7 @@
                     </li>
                     <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="file-text"></i></i><span>Feedbacks</span></a>
                         <ul class="nav-submenu menu-content">
-                            <li><a href="{{route('dashboard.location.index')}}">Location</a></li>
+                            <li><a href="{{route('dashboard.order.index')}}">Orders</a></li>
                             <li><a href="{{route('dashboard.machinetype.index')}}">Machine type</a></li>
                             <li><a href="{{route('dashboard.feedback.index')}}">Feedbacks</a></li>
                             <li><a href="{{route('dashboard.type.index')}}">Feedback Type</a></li>

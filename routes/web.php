@@ -14,6 +14,7 @@ use App\Http\Controllers\Dashboard\HomeVideoController;
 use App\Http\Controllers\Dashboard\HowWorkController;
 use App\Http\Controllers\Dashboard\LocationController;
 use App\Http\Controllers\Dashboard\MachinetypeController;
+use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\Dashboard\ReviewController;
 use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\ServiceSectionController;
@@ -74,6 +75,7 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::resource('/howwork', HowWorkController::class);
         Route::resource('/year', YearController::class);
         Route::resource('/type', TypeController::class);
+        Route::resource('/order', OrderController::class);
 
         Route::get('/optimize', function (){
             \Illuminate\Support\Facades\Artisan::call('route:clear');

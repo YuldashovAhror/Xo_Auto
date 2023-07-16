@@ -13,4 +13,9 @@ class Machinetype extends Model
         'photo',
         'name',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'machinetype_id');
+    }
 }
