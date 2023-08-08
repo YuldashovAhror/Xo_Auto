@@ -75,6 +75,7 @@
                             <li><a href="{{route('dashboard.about.index')}}">List</a></li>
                             <li><a href="{{route('dashboard.about.create')}}">Create</a></li>
                             <li><a href="{{route('dashboard.aboutvideo.index')}}">About Video</a></li>
+                            <li><a href="{{route('dashboard.aboutdiscription.index')}}">About discription</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

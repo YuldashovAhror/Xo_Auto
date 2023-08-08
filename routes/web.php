@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\AboutController;
+use App\Http\Controllers\Dashboard\AboutDiscription;
 use App\Http\Controllers\Dashboard\AboutVideoController;
 use App\Http\Controllers\Dashboard\BlogController;
 use App\Http\Controllers\Dashboard\BrendController;
@@ -76,6 +77,7 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::resource('/year', YearController::class);
         Route::resource('/type', TypeController::class);
         Route::resource('/order', OrderController::class);
+        Route::resource('/aboutdiscription', AboutDiscription::class);
 
         Route::get('/optimize', function (){
             \Illuminate\Support\Facades\Artisan::call('route:clear');

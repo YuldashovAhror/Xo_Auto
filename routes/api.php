@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Front\SericeSingleController;
 use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\AboutDiscriptionController;
 use App\Http\Controllers\Front\AboutVideoController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\BrendController;
@@ -74,4 +75,5 @@ Route::get('/service/{service_id}', [FrontServiceController::class, 'show']);
 Route::get('/servicesingle/{service_id}', [SericeSingleController::class, 'show']);
 Route::get('/servicesection/{service_id}', [ServiceSectionController::class, 'show']);
 Route::post('/order', [OrderController::class, 'store']);
+Route::get('/aboutdiscription', [AboutDiscriptionController::class, 'index']);
 
