@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\AboutController;
 use App\Http\Controllers\Dashboard\AboutDiscription;
+use App\Http\Controllers\Dashboard\AboutDiscriptionController;
 use App\Http\Controllers\Dashboard\AboutVideoController;
 use App\Http\Controllers\Dashboard\BlogController;
 use App\Http\Controllers\Dashboard\BrendController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\Dashboard\StepController;
 use App\Http\Controllers\Dashboard\TeamController;
 use App\Http\Controllers\Dashboard\TypeController;
 use App\Http\Controllers\Dashboard\UserCommentController;
+use App\Http\Controllers\Dashboard\WordController;
 use App\Http\Controllers\Dashboard\WorkController;
 use App\Http\Controllers\Dashboard\YearController;
 use Illuminate\Support\Facades\Route;
@@ -77,7 +79,7 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::resource('/year', YearController::class);
         Route::resource('/type', TypeController::class);
         Route::resource('/order', OrderController::class);
-        Route::resource('/aboutdiscription', AboutDiscription::class);
+        Route::resource('/aboutdiscription', AboutDiscriptionController::class);
 
         Route::get('/optimize', function (){
             \Illuminate\Support\Facades\Artisan::call('route:clear');
@@ -88,6 +90,7 @@ Route::group(['prefix' => 'dashboard'], function (){
             \Illuminate\Support\Facades\Artisan::call('optimize:clear');
             return 'success';
         });
+        Route::get('dashboard/words', [WordController::class, 'index'])->name('words.index');
     });
 });
 

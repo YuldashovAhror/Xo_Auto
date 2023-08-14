@@ -16,6 +16,7 @@ class ServiceResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'slug'=>$this->slug,
             'video'=> env('APP_URL').$this->video,
             'name'=>$this->name,
             'title'=>$this->title,

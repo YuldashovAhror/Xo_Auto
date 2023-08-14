@@ -16,6 +16,7 @@ class BlogResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'slug' => $this->slug,
             'photo'=>env('APP_URL').$this->photo,
             'name'=>$this->name,
             'discription'=>$this->discription,

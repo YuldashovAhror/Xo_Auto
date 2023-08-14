@@ -92,12 +92,6 @@ class AboutVideoController extends Controller
         return redirect()->route('dashboard.aboutvideo.index')->with('success', 'Data updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

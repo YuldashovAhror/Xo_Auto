@@ -58,6 +58,10 @@ class ServiceController extends Controller
         $service->name = $validatedData['name'];
         $service->discription = $validatedData['discription'];
         $service->title = $validatedData['title'];
+        if (!empty($validatedData['name'])){
+                
+            $validatedData['slug'] = str_replace(' ', '_', strtolower($validatedData['name'])) . '-' . Str::random(5);
+        }
         if (!empty($validatedData['video'])) {
             $service->video_name = $validatedData['video']->getClientOriginalName();
             $img_name = Str::random(10) . '.' . $validatedData['video']->getClientOriginalExtension();
@@ -72,6 +76,7 @@ class ServiceController extends Controller
         if(!isset($validatedData['rooms'])){
             $validatedData['rooms'] = [];
         }
+        $service->slug = $validatedData['slug'];
         $service->atribute = $validatedData['rooms'];
 
         $service->save();
@@ -126,6 +131,10 @@ class ServiceController extends Controller
         $service->name = $validatedData['name'];
         $service->discription = $validatedData['discription'];
         $service->title = $validatedData['title'];
+        if (!empty($validatedData['name'])){
+                
+            $validatedData['slug'] = str_replace(' ', '_', strtolower($validatedData['name'])) . '-' . Str::random(5);
+        }
         if (!empty($validatedData['video'])) {
             $service->video_name = $validatedData['video']->getClientOriginalName();
             if (is_file(public_path($service->video))) {
@@ -143,6 +152,7 @@ class ServiceController extends Controller
             $validatedData['second_video']->move(public_path('/image/service/secondvideo'), $img_name);
             $service->second_video = '/image/service/secondvideo/' . $img_name;
         }
+        $service->slug = $validatedData['slug'];
         if(!isset($validatedData['rooms'])){
             $validatedData['rooms'] = [];
         }

@@ -11,7 +11,6 @@ class BlogController extends BaseController
 {
     public function index(Request $request)
     {
-
         if(!$request->perPage){
             $perPage = 12;
         }else{
@@ -24,8 +23,8 @@ class BlogController extends BaseController
         // return $this->successResponse('success', BlogResource::collection(Blog::orderBy('id', 'desc')->get()));
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        return $this->successResponse('success', BlogResource::make(Blog::find($id)));
+        return $this->successResponse('success', BlogResource::make(Blog::where('slug', $slug)->first()));
     }
 }

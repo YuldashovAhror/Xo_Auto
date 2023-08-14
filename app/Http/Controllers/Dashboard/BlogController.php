@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BlogController extends BaseController
 {
@@ -31,12 +32,6 @@ class BlogController extends BaseController
         return view('dashboard.blog.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -54,28 +49,15 @@ class BlogController extends BaseController
         if (!empty($validatedData['second_photo'])) {
             $validatedData['second_photo'] = $this->photoSave($validatedData['second_photo'], 'image/blog/second_photo');
         }
+        if (!empty($validatedData['name'])){
+                
+            $validatedData['slug'] = str_replace(' ', '_', strtolower($validatedData['name'])) . '-' . Str::random(5);
+        }
         Blog::create($validatedData);
 
         return redirect()->route('dashboard.blog.index')->with('success', 'Data uploaded successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $blog  = Blog::find($id);
@@ -84,13 +66,6 @@ class BlogController extends BaseController
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -110,17 +85,15 @@ class BlogController extends BaseController
             $this->fileDelete('\Blog', $id, 'second_photo');
             $validatedData['second_photo'] = $this->photoSave($validatedData['second_photo'], 'image/blog/second_photo');
         }
+        if (!empty($validatedData['name'])){
+                
+            $validatedData['slug'] = str_replace(' ', '_', strtolower($validatedData['name'])) . '-' . Str::random(5);
+        }
         Blog::find($id)->update($validatedData);
 
         return redirect()->route('dashboard.blog.index')->with('success', 'Data updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $this->fileDelete('\Blog', $id, 'photo');

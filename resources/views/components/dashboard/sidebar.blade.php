@@ -104,7 +104,11 @@
                             <span>Team</span>
                         </a>
                     </li>
-                    
+                    <li class="dropdown">
+                        <a class="nav-link menu-title link-nav" href="{{route('dashboard.words.index')}}"><i data-feather="file-text"></i>
+                            <span>Texts</span>
+                        </a>
+                    </li>
                     
                 </ul>
             </div>

@@ -46,9 +46,9 @@ class ServiceController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        return $this->successResponse('success', ServiceResource::make(Service::find($id)));
+        return $this->successResponse('success', ServiceResource::make(Service::where('slug', $slug)->first()));
     }
 
     /**

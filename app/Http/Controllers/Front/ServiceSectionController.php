@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ServiceSectionResource;
+use App\Models\Service;
 use App\Models\ServiceSection;
 use Illuminate\Http\Request;
 
@@ -46,9 +47,10 @@ class ServiceSectionController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        return $this->successResponse('success', ServiceSectionResource::collection( ServiceSection::where('service_id', $id)->get()));
+        $service = Service::where('slug', $slug)->first();
+        return $this->successResponse('success', ServiceSectionResource::collection(ServiceSection::where('service_id', $service->id)->get()));
     }
 
     /**

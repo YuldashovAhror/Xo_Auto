@@ -14,6 +14,7 @@ class Service extends Model
         'title',
         'discription',
         'video',
+        'slug',
         'second_video',
         'atribute',
         'video_name',
