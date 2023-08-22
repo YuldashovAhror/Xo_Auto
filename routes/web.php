@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\BlogController;
 use App\Http\Controllers\Dashboard\BrendController;
 use App\Http\Controllers\Dashboard\CarriersController;
 use App\Http\Controllers\Dashboard\CommentCompanyController;
+use App\Http\Controllers\Dashboard\ConditionController;
 use App\Http\Controllers\Dashboard\FeedbackController;
 use App\Http\Controllers\Dashboard\ForCarriersController;
 use App\Http\Controllers\Dashboard\HelpCenterController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Dashboard\HowWorkController;
 use App\Http\Controllers\Dashboard\LocationController;
 use App\Http\Controllers\Dashboard\MachinetypeController;
 use App\Http\Controllers\Dashboard\OrderController;
+use App\Http\Controllers\Dashboard\PolicyController;
 use App\Http\Controllers\Dashboard\ReviewController;
 use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\ServiceSectionController;
@@ -80,6 +82,8 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::resource('/type', TypeController::class);
         Route::resource('/order', OrderController::class);
         Route::resource('/aboutdiscription', AboutDiscriptionController::class);
+        Route::resource('/condition', ConditionController::class);
+        Route::resource('/policy', PolicyController::class);
 
         Route::get('/optimize', function (){
             \Illuminate\Support\Facades\Artisan::call('route:clear');

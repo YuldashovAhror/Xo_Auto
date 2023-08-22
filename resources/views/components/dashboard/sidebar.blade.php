@@ -104,9 +104,15 @@
                             <span>Team</span>
                         </a>
                     </li>
+                    <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="file-text"></i></i><span>Texts</span></a>
+                        <ul class="nav-submenu menu-content">
+                            <li><a href="{{route('dashboard.condition.index')}}">Condition</a></li>
+                            <li><a href="{{route('dashboard.policy.index')}}">Policy</a></li>
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a class="nav-link menu-title link-nav" href="{{route('dashboard.words.index')}}"><i data-feather="file-text"></i>
-                            <span>Texts</span>
+                            <span>Статический Texts</span>
                         </a>
                     </li>
                     
